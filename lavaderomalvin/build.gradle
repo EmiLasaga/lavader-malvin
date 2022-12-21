@@ -8,6 +8,8 @@ group = 'com.emilasaga'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
+mainClassName = 'com.emilasaga.inbound.lavaderomalvin.LavaderomalvinApplication'
+
 repositories {
 	mavenCentral()
 }
