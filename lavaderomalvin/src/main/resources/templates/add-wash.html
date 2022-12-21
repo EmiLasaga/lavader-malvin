@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Agregar Lavado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+    <div class="container my-5">
+        <h3> Agregar Lavado</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+                    <form action="#" th:action="@{/washes/add}" th:object="${wash}" method="post">
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <label for="clientName" class="col-form-label">Nombre</label> <input type="text" th:field="*{clientName}" class="form-control" id="clientName" placeholder="Nombre del Cliente"> <span th:if="${#fields.hasErrors('clientName')}" th:errors="*{clientName}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="clientLastName" class="col-form-label">Apellido</label> <input type="text" th:field="*{clientLastName}" class="form-control" id="clientLastName" placeholder="Apellido del Cliente"> <span th:if="${#fields.hasErrors('clientLastName')}" th:errors="*{clientLastName}" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label for="clientEmail" class="col-form-label">Email</label> <input type="text" th:field="*{clientEmail}" class="form-control" id="clientEmail" placeholder="Email del Cliente"> <span th:if="${#fields.hasErrors('clientEmail')}" th:errors="*{clientEmail}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="clientPhoneNo" class="col-form-label">Telefono</label> <input type="text" th:field="*{clientPhoneNo}" class="form-control" id="clientPhoneNo" placeholder="Telefono del Cliente"> <span th:if="${#fields.hasErrors('clientPhoneNo')}" th:errors="*{clientPhoneNo}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="washType" class="col-form-label">Tipo de lavado</label> <input type="text" th:field="*{washType}" class="form-control" id="washType" placeholder="Tipo de Lavado"> <span th:if="${#fields.hasErrors('washType')}" th:errors="*{washType}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="washAmounts" class="col-form-label">Cantidad de lavados</label> <input type="text" th:field="*{washAmounts}" class="form-control" id="washAmounts" placeholder="Cantidad de lavados"> <span th:if="${#fields.hasErrors('washAmounts')}" th:errors="*{washAmounts}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="cost" class="col-form-label">Costo</label> <input type="text" th:field="*{cost}" class="form-control" id="cost" placeholder="Costo"> <span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="description" class="col-form-label">Descripcion</label> <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="Costo"> <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary" value="Agregar Lavado">
+                            </div>
+
+                            <div class="form-group col-md-8"></div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
