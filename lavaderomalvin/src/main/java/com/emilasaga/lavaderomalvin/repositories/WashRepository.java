@@ -13,5 +13,6 @@ public interface WashRepository extends JpaRepository<Wash, Long> {
     List<Wash> findByClientName(String clientName);
     List<Wash> findByClientLastName(String clientLastName);
     List<Wash> findByCreatedAt(LocalDateTime createdAt);
+    List<Wash> findAllByOrderByCreatedAtDesc();
 
 }
