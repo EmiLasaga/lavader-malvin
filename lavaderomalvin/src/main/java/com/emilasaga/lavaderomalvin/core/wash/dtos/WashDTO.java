@@ -3,7 +3,7 @@ package com.emilasaga.lavaderomalvin.core.wash.dtos;
 import com.emilasaga.lavaderomalvin.core.wash.enums.WashStatus;
 import com.emilasaga.lavaderomalvin.core.wash.enums.WashType;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class WashDTO {
 
@@ -25,9 +25,9 @@ public class WashDTO {
 
     final private WashStatus status;
 
-    final private LocalDate updatedAt;
+    final private LocalDateTime updatedAt;
 
-    public WashDTO(String clientName, String clientLastName, String clientEmail, long clientPhoneNo, WashType washType, int washAmounts, int cost, String description, WashStatus status, LocalDate updatedAt) {
+    public WashDTO(String clientName, String clientLastName, String clientEmail, long clientPhoneNo, WashType washType, int washAmounts, int cost, String description, WashStatus status, LocalDateTime updatedAt) {
         this.clientName = clientName;
         this.clientLastName = clientLastName;
         this.clientEmail = clientEmail;
@@ -76,7 +76,7 @@ public class WashDTO {
         return status;
     }
 
-    public LocalDate getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 }

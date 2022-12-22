@@ -9,6 +9,24 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+    <style>
+        .CREATED{
+            color: black;
+            font-weight: bold;
+        }
+        .IN_PROGRESS{
+            color: black;
+            font-weight: bold;
+        }
+        .COMPLETED{
+            color: darkolivegreen;
+            font-weight: bold;
+        }
+        .FINISHED{
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,9 +34,9 @@
         <div class="card">
             <div class="card-body">
                 <div th:switch="${washes}" class="container">
-                    <p class="my-5">
-                        <a href="/washes/showForm" class="btn btn-primary"><i
-       class="fas fa-user-plus ml-2"> Agregar Lavado</i></a>
+                    <p class="my-8">
+                        <a href="/washes/showForm" class="btn btn-info"><i
+       class="fas fa-heart ml-8"> Agregar Lavado</i></a>
                     </p>
                     <div class="col-xl-12">
                         <h2 th:case="null">No Hay Lavados todavia!</h2>
@@ -40,8 +58,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="wash : ${washes}">
-                                        <td th:text="${wash.createdAt}"></td>
+                                    <tr th:each="wash : ${washes}" th:class="${wash.status}">
+                                        <td th:text="${wash.createdAt.toLocalDate()}"></td>
                                         <td th:text="${wash.clientName}"></td>
                                         <td th:text="${wash.clientLastName}"></td>
                                         <td th:text="${wash.clientPhoneNo}"></td>
@@ -49,8 +67,8 @@
                                         <td th:text="${wash.washAmounts}"></td>
                                         <td th:text="${wash.cost}"></td>
                                         <td th:text="${wash.status.toSpanish()}"></td>
-                                        <td><a th:href="@{/washes/edit/{id}(id=${wash.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                        <td><a th:href="@{/washes/delete/{id}(id=${wash.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                        <td><a th:href="@{/washes/edit/{id}(id=${wash.id})}" class="btn btn-warning"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                        <td><a th:href="@{/washes/delete/{id}(id=${wash.id})}" class="btn btn-danger"><i class="fas fa-user-times ml-2"></i></a></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -31,7 +31,7 @@ public class WashController {
 
     @GetMapping("list")
     public String washes(Model model) {
-        model.addAttribute("washes", this.washRepository.findAll());
+        model.addAttribute("washes", this.washRepository.findAllByOrderByCreatedAtDesc());
         return "index";
     }
 
@@ -64,7 +64,7 @@ public class WashController {
 
         updateWash.execute(id, wash);
         // get all washes ( with update)
-        model.addAttribute("washes", this.washRepository.findAll());
+        model.addAttribute("washes", this.washRepository.findAllByOrderByCreatedAtDesc());
         return "index";
     }
 
@@ -75,7 +75,7 @@ public class WashController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid wash id : " + id));
 
         this.washRepository.delete(wash);
-        model.addAttribute("washes", this.washRepository.findAll());
+        model.addAttribute("washes", this.washRepository.findAllByOrderByCreatedAtDesc());
         return "index";
 
     }
