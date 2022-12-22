@@ -1,6 +1,9 @@
 package com.emilasaga.lavaderomalvin.controllers;
 
-import com.emilasaga.lavaderomalvin.entity.wash.Wash;
+import com.emilasaga.lavaderomalvin.core.wash.dtos.WashDTO;
+import com.emilasaga.lavaderomalvin.core.wash.model.Wash;
+import com.emilasaga.lavaderomalvin.core.wash.enums.WashStatus;
+import com.emilasaga.lavaderomalvin.core.wash.usecases.UpdateWash;
 import com.emilasaga.lavaderomalvin.repositories.WashRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,8 @@ public class WashController {
 
     @Autowired
     private WashRepository washRepository;
+    @Autowired
+    private UpdateWash updateWash;
 
     @GetMapping("showForm")
     public String showWashForm(Wash wash) {
@@ -35,6 +40,7 @@ public class WashController {
         if(result.hasErrors()) {
             return "add-wash";
         }
+        wash.setStatus(WashStatus.CREATED);
 
         this.washRepository.save(wash);
         return "redirect:list";
@@ -50,15 +56,13 @@ public class WashController {
     }
 
     @PostMapping("update/{id}")
-    public String updateWash(@PathVariable("id") long id, @Validated Wash wash, BindingResult result, Model model) {
+    public String updateWash(@PathVariable("id") long id, @Validated WashDTO wash, BindingResult result, Model model) {
+
         if(result.hasErrors()) {
-            wash.setId(id);
             return "update-wash";
         }
 
-        // update wash
-        washRepository.save(wash);
-
+        updateWash.execute(id, wash);
         // get all washes ( with update)
         model.addAttribute("washes", this.washRepository.findAll());
         return "index";

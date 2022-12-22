@@ -27,26 +27,28 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th>Fecha</th>
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Telefono</th>
                                         <th>Tipo Lavado</th>
-                                        <th>Fecha</th>
-                                        <th>Estado</th>
+                                        <th>Cant.Lav</th>
                                         <th>Costo</th>
+                                        <th>Estado</th>
                                         <th>Editar</th>
                                         <th>Borrar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr th:each="wash : ${washes}">
+                                        <td th:text="${wash.createdAt}"></td>
                                         <td th:text="${wash.clientName}"></td>
                                         <td th:text="${wash.clientLastName}"></td>
                                         <td th:text="${wash.clientPhoneNo}"></td>
-                                        <td th:text="${wash.washType}"></td>
-                                        <td th:text="${wash.createdAt}"></td>
-                                        <td th:text="${wash.status}"></td>
+                                        <td th:text="${wash.washType.toSpanish()}"></td>
+                                        <td th:text="${wash.washAmounts}"></td>
                                         <td th:text="${wash.cost}"></td>
+                                        <td th:text="${wash.status.toSpanish()}"></td>
                                         <td><a th:href="@{/washes/edit/{id}(id=${wash.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
                                         <td><a th:href="@{/washes/delete/{id}(id=${wash.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                                     </tr>

@@ -1,6 +1,6 @@
 package com.emilasaga.lavaderomalvin.repositories;
 
-import com.emilasaga.lavaderomalvin.entity.wash.Wash;
+import com.emilasaga.lavaderomalvin.core.wash.model.Wash;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
