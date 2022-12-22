@@ -46,11 +46,12 @@
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
+                                        <th>Id</th>
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Telefono</th>
-                                        <th>Tipo Lavado</th>
-                                        <th>Cant.Lav</th>
+                                        <th>Tipo Servicio</th>
+                                        <th>Cant</th>
                                         <th>Costo</th>
                                         <th>Estado</th>
                                         <th>Editar</th>
@@ -60,12 +61,13 @@
                                 <tbody>
                                     <tr th:each="wash : ${washes}" th:class="${wash.status}">
                                         <td th:text="${wash.createdAt.toLocalDate()}"></td>
+                                        <td th:text="${wash.id}"></td>
                                         <td th:text="${wash.clientName}"></td>
                                         <td th:text="${wash.clientLastName}"></td>
                                         <td th:text="${wash.clientPhoneNo}"></td>
                                         <td th:text="${wash.washType.toSpanish()}"></td>
                                         <td th:text="${wash.washAmounts}"></td>
-                                        <td th:text="${wash.cost}"></td>
+                                        <td th:text="'$'+${wash.cost}"></td>
                                         <td th:text="${wash.status.toSpanish()}"></td>
                                         <td><a th:href="@{/washes/edit/{id}(id=${wash.id})}" class="btn btn-warning"><i class="fas fa-user-edit ml-2"></i></a></td>
                                         <td><a th:href="@{/washes/delete/{id}(id=${wash.id})}" class="btn btn-danger"><i class="fas fa-user-times ml-2"></i></a></td>
