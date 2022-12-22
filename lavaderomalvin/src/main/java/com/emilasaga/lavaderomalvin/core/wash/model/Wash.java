@@ -1,16 +1,17 @@
-package com.emilasaga.lavaderomalvin.entity.wash;
+package com.emilasaga.lavaderomalvin.core.wash.model;
 
-import com.emilasaga.lavaderomalvin.entity.wash.enums.WashStatus;
-import com.emilasaga.lavaderomalvin.entity.wash.enums.WashType;
+import com.emilasaga.lavaderomalvin.core.wash.enums.WashStatus;
+import com.emilasaga.lavaderomalvin.core.wash.enums.WashType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.lang.NonNull;
 
 import java.time.LocalDate;
 
@@ -23,22 +24,21 @@ public class Wash {
     private long id;
 
     @Column(name = "client_name")
-    @NonNull
+    @NotBlank(message = "No puede estar vacio")
     private String clientName;
 
     @Column(name = "client_last_name")
-    @NonNull
+    @NotBlank(message = "No puede estar vacio")
     private String clientLastName;
 
     @Column(name = "client_email")
     private String clientEmail;
 
     @Column(name = "client_phone_no")
-    @NonNull
+    @Min(value = 1, message = "Tiene que ingresar un telefono")
     private long clientPhoneNo;
 
     @Column(name = "wash_type")
-    @NonNull
     private WashType washType;
 
     @Column(name = "wash_amounts")
@@ -48,6 +48,7 @@ public class Wash {
     private int cost;
 
     @Column(name = "description")
+    @NotBlank(message = "Describa lo que recibio")
     private String description;
 
     @Column(name = "status")
@@ -60,20 +61,6 @@ public class Wash {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDate updatedAt;
-
-    public Wash(@NonNull String clientName, @NonNull String clientLastName, String clientEmail,
-                long clientPhoneNo, @NonNull WashType washType,
-                int wash_amounts, String description, int cost) {
-        this.clientName = clientName;
-        this.clientLastName = clientLastName;
-        this.clientEmail = clientEmail;
-        this.clientPhoneNo = clientPhoneNo;
-        this.washType = washType;
-        this.washAmounts = wash_amounts;
-        this.description = description;
-        this.status = WashStatus.CREATED;
-        this.cost = cost;
-    }
 
     public Wash() {
 
@@ -103,21 +90,19 @@ public class Wash {
         this.id = id;
     }
 
-    @NonNull
     public String getClientName() {
         return clientName;
     }
 
-    public void setClientName(@NonNull String clientName) {
+    public void setClientName( String clientName) {
         this.clientName = clientName;
     }
 
-    @NonNull
     public String getClientLastName() {
         return clientLastName;
     }
 
-    public void setClientLastName(@NonNull String clientLastName) {
+    public void setClientLastName( String clientLastName) {
         this.clientLastName = clientLastName;
     }
 
@@ -137,12 +122,12 @@ public class Wash {
         this.clientPhoneNo = clientPhoneNo;
     }
 
-    @NonNull
+
     public WashType getWashType() {
         return washType;
     }
 
-    public void setWashType(@NonNull WashType washType) {
+    public void setWashType( WashType washType) {
         this.washType = washType;
     }
 
