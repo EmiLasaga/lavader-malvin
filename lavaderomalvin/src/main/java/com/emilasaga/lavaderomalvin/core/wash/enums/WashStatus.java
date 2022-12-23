@@ -1,9 +1,9 @@
 package com.emilasaga.lavaderomalvin.core.wash.enums;
 
 public enum WashStatus {
-    CREATED("CREADO",1),
+    CREATED("PENDIENTE",1),
     IN_PROGRESS("EN_PROGRESO",2),
-    COMPLETED("COMPLETADO", 3),
+    COMPLETED("TERMINADO", 3),
     FINISHED("ENTREGADO", 4);
 
     private final String spanishValue;
